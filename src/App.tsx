@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Download, ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
+import { Menu, X, Download, ExternalLink, Mail, Phone, MapPin, ChevronDown } from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,24 +69,36 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <div className="flex justify-between items-center py-4 animate-fade-in">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
               Danish Aoun
             </div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-blue-600 transition-colors">Home</button>
-              <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-blue-600 transition-colors">About</button>
-              <button onClick={() => scrollToSection('projects')} className="text-gray-700 hover:text-blue-600 transition-colors">Projects</button>
-              <button onClick={() => scrollToSection('skills')} className="text-gray-700 hover:text-blue-600 transition-colors">Skills</button>
+              <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
+                Home
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
+              <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
+                About
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
+              <button onClick={() => scrollToSection('projects')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
+                Projects
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
+              <button onClick={() => scrollToSection('skills')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
+                Skills
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110">
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
@@ -94,12 +106,12 @@ function App() {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t">
+            <div className="md:hidden py-4 border-t animate-slide-down">
               <div className="flex flex-col space-y-4">
-                <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-blue-600 transition-colors text-left">Home</button>
-                <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-blue-600 transition-colors text-left">About</button>
-                <button onClick={() => scrollToSection('projects')} className="text-gray-700 hover:text-blue-600 transition-colors text-left">Projects</button>
-                <button onClick={() => scrollToSection('skills')} className="text-gray-700 hover:text-blue-600 transition-colors text-left">Skills</button>
+                <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">Home</button>
+                <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">About</button>
+                <button onClick={() => scrollToSection('projects')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">Projects</button>
+                <button onClick={() => scrollToSection('skills')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">Skills</button>
               </div>
             </div>
           )}
@@ -107,68 +119,92 @@ function App() {
       </nav>
 
       {/* Home Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-            Danish <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Aoun</span>
+      <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in-up">
+            Danish <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">Aoun</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
+          <p className="text-xl md:text-2xl text-gray-600 mb-8 animate-fade-in-up delay-200">
             Graphic Designer
           </p>
-          <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-300">
             Certified in Figma to WordPress website development. Creating visually engaging content and user-friendly designs with a passion for innovation.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <div className="flex items-center gap-2 text-gray-600">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-500">
+            <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
               <MapPin size={16} />
-              <span className="text-sm">House#1 Street #5 Block C Bilal town Jhelum</span>
+              <span className="text-sm group-hover:scale-105 transition-transform duration-300">House#1 Street #5 Block C Bilal town Jhelum</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600">
+            <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
               <Phone size={16} />
-              <span className="text-sm">03350204955</span>
+              <span className="text-sm group-hover:scale-105 transition-transform duration-300">03350204955</span>
             </div>
-            <div className="flex items-center gap-2 text-gray-600">
+            <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
               <Mail size={16} />
-              <span className="text-sm">aoundanish6@gmail.com</span>
+              <span className="text-sm group-hover:scale-105 transition-transform duration-300">aoundanish6@gmail.com</span>
             </div>
+          </div>
+          
+          {/* Scroll Down Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <ChevronDown className="w-6 h-6 text-gray-400" />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-blue-50/30"></div>
+        
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">About Me</h2>
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16 animate-fade-in-up relative">
+            About Me
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+          </h2>
           
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Career Objective</h3>
-              <p className="text-gray-600 leading-relaxed mb-8">
+          <div className="grid md:grid-cols-2 gap-12 relative z-10">
+            <div className="animate-fade-in-left">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 relative">
+                Career Objective
+                <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-8 hover:text-gray-700 transition-colors duration-300">
                 A creative and passionate Graphic Designer with hands-on experience in UI/UX design, visual storytelling, and digital media. Skilled in Figma, Canva, and WordPress design, I aim to create visually engaging content and user-friendly designs while gaining practical experience and contributing to innovative projects.
               </p>
               
-              <div className="mb-8">
+              <div className="mb-8 group">
                 <a 
                   href="https://www.dropbox.com/scl/fi/ibjn9uyyp5cm72abonlsd/Aoun-1.pdf?rlkey=nj2ww6p0qly1kzxw1v67wgxl0&st=t22mkl4p&dl=1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group"
                 >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <Download size={20} />
-                  Download Resume
+                  <span className="relative z-10">Download Resume</span>
                 </a>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Education</h3>
+            <div className="animate-fade-in-right">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 relative">
+                Education
+                <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+              </h3>
               <div className="space-y-6">
-                <div className="border-l-4 border-blue-500 pl-4">
+                <div className="border-l-4 border-blue-500 pl-4 hover:border-blue-600 transition-colors duration-300 hover:translate-x-2 transform transition-transform">
                   <h4 className="font-semibold text-gray-900">PostAdp Business Management & Accountancy</h4>
                   <p className="text-gray-600">University of Management and Technology</p>
                   <p className="text-sm text-gray-500">2023 - 2025 • GPA: 3.2/4</p>
                 </div>
-                <div className="border-l-4 border-purple-500 pl-4">
+                <div className="border-l-4 border-purple-500 pl-4 hover:border-purple-600 transition-colors duration-300 hover:translate-x-2 transform transition-transform">
                   <h4 className="font-semibold text-gray-900">ADP Computer Science</h4>
                   <p className="text-gray-600">University of Management and Technology</p>
                   <p className="text-sm text-gray-500">2020 - 2022 • GPA: 3.14/4</p>
@@ -178,19 +214,22 @@ function App() {
           </div>
 
           <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Work Experience</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              Work Experience
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+            </h3>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500 animate-fade-in-up delay-100">
                 <h4 className="font-semibold text-gray-900 mb-2">Web Developer</h4>
                 <p className="text-blue-600 font-medium mb-2">Freelancer</p>
                 <p className="text-sm text-gray-500">2023 - onwards</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-green-500 animate-fade-in-up delay-200">
                 <h4 className="font-semibold text-gray-900 mb-2">WordPress Internship</h4>
                 <p className="text-blue-600 font-medium mb-2">Tech Hub Pakistan</p>
                 <p className="text-sm text-gray-500">May 2022 - June 2022</p>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-purple-500 animate-fade-in-up delay-300">
                 <h4 className="font-semibold text-gray-900 mb-2">Graphic Designer Intern</h4>
                 <p className="text-blue-600 font-medium mb-2">Multidex Technologies</p>
                 <p className="text-sm text-gray-500">March 2022 - April 2022</p>
@@ -199,24 +238,27 @@ function App() {
           </div>
 
           <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Certifications</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              Certifications
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+            </h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="flex items-center gap-3 p-4 border rounded-lg">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div className="flex items-center gap-3 p-4 border rounded-xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-100">
+                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
                 <div>
                   <h4 className="font-medium text-gray-900">Figma to WordPress Website</h4>
                   <p className="text-sm text-gray-500">2025</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 border rounded-lg">
-                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+              <div className="flex items-center gap-3 p-4 border rounded-xl hover:border-purple-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-200">
+                <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
                 <div>
                   <h4 className="font-medium text-gray-900">Web Design for Beginners: HTML & CSS</h4>
                   <p className="text-sm text-gray-500">2025</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 border rounded-lg">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div className="flex items-center gap-3 p-4 border rounded-xl hover:border-green-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-300">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 <div>
                   <h4 className="font-medium text-gray-900">WordPress Web Design & Freelancing Masterclass</h4>
                   <p className="text-sm text-gray-500">2025</p>
@@ -329,23 +371,34 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-white">
+      <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-purple-100/50 to-pink-100/50 rounded-full blur-3xl"></div>
+        
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Projects</h2>
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16 animate-fade-in-up relative">
+            Projects
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+          </h2>
           
           {/* Social Media Design Projects */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Social Media Design Projects</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              Social Media Design Projects
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+            </h3>
             <div className="grid md:grid-cols-3 gap-8">
               {projects.socialMedia.map((project, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <div key={index} className={`bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-blue-500 hover:border-blue-600 animate-fade-in-up group relative overflow-hidden`} style={{animationDelay: `${index * 100}ms`}}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
                   <p className="text-gray-600 mb-4">{project.description}</p>
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
                   >
                     View Project <ExternalLink size={16} />
                   </a>
@@ -356,10 +409,14 @@ function App() {
 
           {/* WordPress Projects */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">WordPress Projects</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              WordPress Projects
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-green-600 to-teal-600"></div>
+            </h3>
             <div className="grid md:grid-cols-3 gap-8">
               {projects.wordpress.map((project, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <div key={index} className={`bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-green-500 hover:border-green-600 animate-fade-in-up group relative overflow-hidden`} style={{animationDelay: `${index * 100}ms`}}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
                   <p className="text-gray-600 mb-4">{project.description}</p>
                   {project.link !== "#" ? (
@@ -367,12 +424,12 @@ function App() {
                       href={project.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                      className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
                     >
                       View Project <ExternalLink size={16} />
                     </a>
                   ) : (
-                    <span className="text-gray-400">Coming Soon</span>
+                    <span className="text-gray-400 animate-pulse">Coming Soon</span>
                   )}
                 </div>
               ))}
@@ -381,10 +438,14 @@ function App() {
 
           {/* HTML & CSS Projects */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">HTML & CSS Projects</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              HTML & CSS Projects
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-orange-600 to-red-600"></div>
+            </h3>
             <div className="grid md:grid-cols-3 gap-8">
               {projects.htmlCss.map((project, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <div key={index} className={`bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-orange-500 hover:border-orange-600 animate-fade-in-up group relative overflow-hidden`} style={{animationDelay: `${index * 100}ms`}}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
                   <p className="text-gray-600 mb-4">{project.description}</p>
                   {project.link !== "#" ? (
@@ -392,12 +453,12 @@ function App() {
                       href={project.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                      className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
                     >
                       View Project <ExternalLink size={16} />
                     </a>
                   ) : (
-                    <span className="text-gray-400">Coming Soon</span>
+                    <span className="text-gray-400 animate-pulse">Coming Soon</span>
                   )}
                 </div>
               ))}
@@ -406,22 +467,28 @@ function App() {
 
           {/* Research Projects */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Research & Academic Projects</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              Research & Academic Projects
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600"></div>
+            </h3>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-indigo-500 hover:border-indigo-600 animate-fade-in-up group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Impact of Technology Adoption on Operational Efficiency</h4>
                 <p className="text-gray-600 mb-2">Research project on business growth through technology</p>
-                <span className="text-sm text-blue-600 font-medium">Research Project</span>
+                <span className="text-sm text-indigo-600 font-medium bg-indigo-100 px-3 py-1 rounded-full">Research Project</span>
               </div>
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-purple-500 hover:border-purple-600 animate-fade-in-up delay-100 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Financial Statement Analysis</h4>
                 <p className="text-gray-600 mb-2">Ratio calculation of Ferozsons Pharma and Mectar Pharma</p>
-                <span className="text-sm text-blue-600 font-medium">Class Project</span>
+                <span className="text-sm text-purple-600 font-medium bg-purple-100 px-3 py-1 rounded-full">Class Project</span>
               </div>
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-pink-500 hover:border-pink-600 animate-fade-in-up delay-200 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">Finchartsphare Business Plan</h4>
                 <p className="text-gray-600 mb-2">AI powered financial tracker all-in-one solution</p>
-                <span className="text-sm text-blue-600 font-medium">Class Project</span>
+                <span className="text-sm text-pink-600 font-medium bg-pink-100 px-3 py-1 rounded-full">Class Project</span>
               </div>
             </div>
           </div>
@@ -429,9 +496,16 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-gray-400">© 2025 Danish Aoun. All rights reserved.</p>
+      <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-12 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20"></div>
+        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
+          <div className="mb-6">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">Danish Aoun</h3>
+            <p className="text-gray-300">Graphic Designer & Web Developer</p>
+          </div>
+          <div className="border-t border-gray-700 pt-6">
+            <p className="text-gray-400 hover:text-white transition-colors duration-300">© 2025 Danish Aoun. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
