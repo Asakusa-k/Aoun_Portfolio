@@ -504,7 +504,7 @@ function App() {
             <p className="text-gray-300">Graphic Designer & Web Developer</p>
           </div>
           <div className="border-t border-gray-700 pt-6">
-            <p className="text-gray-400 hover:text-white transition-colors duration-300">© 2025 Danish Aoun. All rights reserved.</p>
+            <p className="text-gray-400 hover:text-white transition-colors duration-300">© 2025 Aoun Danish. All rights reserved.</p>
           </div>
         </div>
       </footer>
