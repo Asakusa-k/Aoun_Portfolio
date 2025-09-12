@@ -128,7 +128,7 @@ function App() {
         
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in-up">
-            Danish <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">Aoun</span>
+            Aoun <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">Danish</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 animate-fade-in-up delay-200">
             Graphic Designer
