@@ -73,7 +73,7 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4 animate-fade-in">
             <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
-              Danish Aoun
+              Aoun Danish
             </div>
             
             {/* Desktop Menu */}
@@ -500,7 +500,7 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20"></div>
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <div className="mb-6">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">Danish Aoun</h3>
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">Aoun Danish</h3>
             <p className="text-gray-300">Graphic Designer & Web Developer</p>
           </div>
           <div className="border-t border-gray-700 pt-6">
