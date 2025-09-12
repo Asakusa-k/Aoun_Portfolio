@@ -233,39 +233,96 @@ function App() {
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Skills</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Design & UI/UX</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Figma</li>
-                <li>• Canva</li>
-                <li>• Adobe Creative Suite</li>
-              </ul>
+            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-blue-500 hover:border-blue-600">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Design & UI/UX</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center p-2 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Figma</span>
+                </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-purple-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Canva</span>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Web & Digital Tools</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• WordPress</li>
-                <li>• Shopify</li>
-              </ul>
+            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-green-500 hover:border-green-600">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Web & Digital Tools</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center p-2 rounded-lg hover:bg-green-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">WordPress</span>
+                </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-teal-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Shopify</span>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Front-End Basics</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• HTML5</li>
-                <li>• CSS3</li>
-                <li>• JavaScript</li>
-              </ul>
+            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-orange-500 hover:border-orange-600">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">Front-End Basics</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center p-2 rounded-lg hover:bg-orange-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">HTML5</span>
+                </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-red-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">CSS3</span>
+                </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-yellow-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">JavaScript</span>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Other Skills</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li>• Documentation</li>
-                <li>• Good Communication</li>
-                <li>• Attention to Detail</li>
-              </ul>
+            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-indigo-500 hover:border-indigo-600">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">Other Skills</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center p-2 rounded-lg hover:bg-indigo-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Documentation</span>
+                </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-purple-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Good Communication</span>
+                </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-pink-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Attention to Detail</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
