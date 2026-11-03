@@ -13,6 +13,13 @@ function App() {
   };
 
   const projects = {
+    shopify: [
+      {
+        name: "True Rest",
+        description: "Shopify store for a UK memory foam mattress brand: product pages, brand story, reviews, blog and Klarna checkout",
+        link: "https://truerest.co.uk"
+      }
+    ],
     socialMedia: [
       {
         name: "Game Hero",
@@ -31,6 +38,21 @@ function App() {
       }
     ],
     wordpress: [
+      {
+        name: "ExtreemTek",
+        description: "Company website for a software development company in Eindhoven (in progress)",
+        link: "https://extreemtek.com"
+      },
+      {
+        name: "Solar Dream",
+        description: "Website for a UK solar energy business",
+        link: "https://solardream.co.uk"
+      },
+      {
+        name: "Ray Executive Cars",
+        description: "Website and social media designs for a UK executive car service",
+        link: "https://www.rayexecutivecars.co.uk"
+      },
       {
         name: "Fall Family Furniture",
         description: "E-commerce furniture website",
@@ -131,15 +153,15 @@ function App() {
             Aoun <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">Danish</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 mb-8 animate-fade-in-up delay-200">
-            Graphic Designer
+            Web Developer &amp; Digital Marketer
           </p>
           <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-300">
-            Certified in Figma to WordPress website development. Creating visually engaging content and user-friendly designs with a passion for innovation.
+            I build WordPress and Shopify websites and run the marketing that brings customers to them: Meta ads, lead generation and SEO.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-500">
             <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
               <MapPin size={16} />
-              <span className="text-sm group-hover:scale-105 transition-transform duration-300">House#1 Street #5 Block C Bilal town Jhelum</span>
+              <span className="text-sm group-hover:scale-105 transition-transform duration-300">Jhelum, Pakistan</span>
             </div>
             <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
               <Phone size={16} />
@@ -149,6 +171,10 @@ function App() {
               <Mail size={16} />
               <span className="text-sm group-hover:scale-105 transition-transform duration-300">aoundanish6@gmail.com</span>
             </div>
+            <a href="https://www.linkedin.com/in/aoun-danish-87a12a449/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
+              <ExternalLink size={16} />
+              <span className="text-sm group-hover:scale-105 transition-transform duration-300">LinkedIn</span>
+            </a>
           </div>
           
           {/* Scroll Down Indicator */}
@@ -176,7 +202,7 @@ function App() {
                 <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
               </h3>
               <p className="text-gray-600 leading-relaxed mb-8 hover:text-gray-700 transition-colors duration-300">
-                A creative and passionate Graphic Designer with hands-on experience in UI/UX design, visual storytelling, and digital media. Skilled in Figma, Canva, and WordPress design, I aim to create visually engaging content and user-friendly designs while gaining practical experience and contributing to innovative projects.
+                I help businesses get more leads and sales online, from the ad to the website it lands on. I'm a Digital Marketer at ExtreemTek, where I run Meta lead-generation campaigns, handle website content and SEO, and am building the company website. Since 2023 I've also built WordPress and Shopify sites for clients including True Rest, Solar Dream, Fall Family Furniture and Ray Executive Cars. Because I do both, the campaign and the landing page come from the same person.
               </p>
               
               <div className="mb-8 group">
@@ -219,6 +245,16 @@ function App() {
               <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
             </h3>
             <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-indigo-500 animate-fade-in-up">
+                <h4 className="font-semibold text-gray-900 mb-2">Digital Marketer</h4>
+                <p className="text-blue-600 font-medium mb-2">ExtreemTek</p>
+                <p className="text-sm text-gray-500">June 2026 - Present</p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-pink-500 animate-fade-in-up">
+                <h4 className="font-semibold text-gray-900 mb-2">Digital Marketer</h4>
+                <p className="text-blue-600 font-medium mb-2">Chimp Studio</p>
+                <p className="text-sm text-gray-500">Sep 2025 - June 2026</p>
+              </div>
               <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500 animate-fade-in-up delay-100">
                 <h4 className="font-semibold text-gray-900 mb-2">Web Developer</h4>
                 <p className="text-blue-600 font-medium mb-2">Freelancer</p>
@@ -247,23 +283,30 @@ function App() {
                 <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
                 <div>
                   <h4 className="font-medium text-gray-900">Figma to WordPress Website</h4>
-                  <p className="text-sm text-gray-500">2025</p>
+                  <p className="text-sm text-gray-500">Udemy • 2025</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 border rounded-xl hover:border-purple-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-200">
+              <a href="https://ude.my/UC-7b636a14-b0ad-47c6-9e1c-b6f2609a32da" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-purple-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-200">
                 <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
                 <div>
                   <h4 className="font-medium text-gray-900">Web Design for Beginners: HTML & CSS</h4>
-                  <p className="text-sm text-gray-500">2025</p>
+                  <p className="text-sm text-gray-500">Udemy • May 2025 • Verify ↗</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 p-4 border rounded-xl hover:border-green-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-300">
+              </a>
+              <a href="https://ude.my/UC-96d73063-d0a0-4919-af72-8b3e706e09c3" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-green-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-300">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 <div>
                   <h4 className="font-medium text-gray-900">WordPress Web Design & Freelancing Masterclass</h4>
-                  <p className="text-sm text-gray-500">2025</p>
+                  <p className="text-sm text-gray-500">Udemy • May 2025 • Verify ↗</p>
                 </div>
-              </div>
+              </a>
+              <a href="https://ude.my/UC-3603e572-5aed-4b99-b4b8-a7411181812f" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-300">
+                <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
+                <div>
+                  <h4 className="font-medium text-gray-900">WordPress (No Coding): Build a Site in 3.5 Hours</h4>
+                  <p className="text-sm text-gray-500">Udemy • May 2025 • Verify ↗</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -274,7 +317,26 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Skills</h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-pink-500 hover:border-pink-600">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-pink-600 transition-colors duration-300">Digital Marketing</h3>
+              </div>
+              <div className="space-y-3">
+                {["Meta (Facebook & Instagram) Ads", "Lead Generation", "SEO", "Social Media Marketing"].map((s) => (
+                  <div key={s} className="flex items-center p-2 rounded-lg hover:bg-pink-50 transition-colors duration-200">
+                    <div className="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></div>
+                    <span className="text-gray-700 font-medium">{s}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-blue-500 hover:border-blue-600">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
@@ -356,6 +418,10 @@ function App() {
                   <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></div>
                   <span className="text-gray-700 font-medium">Documentation</span>
                 </div>
+                <div className="flex items-center p-2 rounded-lg hover:bg-indigo-50 transition-colors duration-200">
+                  <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-gray-700 font-medium">Power BI</span>
+                </div>
                 <div className="flex items-center p-2 rounded-lg hover:bg-purple-50 transition-colors duration-200">
                   <div className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></div>
                   <span className="text-gray-700 font-medium">Good Communication</span>
@@ -382,6 +448,31 @@ function App() {
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
           </h2>
           
+          {/* Shopify Projects */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
+              Shopify Projects
+              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-emerald-600 to-lime-600"></div>
+            </h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {projects.shopify.map((project, index) => (
+                <div key={index} className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-emerald-500 hover:border-emerald-600 animate-fade-in-up group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
+                  <p className="text-gray-600 mb-4">{project.description}</p>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
+                  >
+                    Visit Store <ExternalLink size={16} />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Social Media Design Projects */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
@@ -429,7 +520,7 @@ function App() {
                       View Project <ExternalLink size={16} />
                     </a>
                   ) : (
-                    <span className="text-gray-400 animate-pulse">Coming Soon</span>
+                    <span className="text-gray-400">Client project</span>
                   )}
                 </div>
               ))}
@@ -458,7 +549,7 @@ function App() {
                       View Project <ExternalLink size={16} />
                     </a>
                   ) : (
-                    <span className="text-gray-400 animate-pulse">Coming Soon</span>
+                    <span className="text-gray-400">Client project</span>
                   )}
                 </div>
               ))}
@@ -501,10 +592,10 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
           <div className="mb-6">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">Aoun Danish</h3>
-            <p className="text-gray-300">Graphic Designer & Web Developer</p>
+            <p className="text-gray-300">Web Developer & Digital Marketer</p>
           </div>
           <div className="border-t border-gray-700 pt-6">
-            <p className="text-gray-400 hover:text-white transition-colors duration-300">© 2025 Aoun Danish. All rights reserved.</p>
+            <p className="text-gray-400 hover:text-white transition-colors duration-300">© 2026 Aoun Danish. All rights reserved.</p>
           </div>
         </div>
       </footer>
