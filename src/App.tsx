@@ -1,602 +1,404 @@
-import React, { useState } from 'react';
-import { Menu, X, Download, ExternalLink, Mail, Phone, MapPin, ChevronDown } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {
+  Menu, X, ArrowRight, ArrowUpRight, ArrowDown, Download, Mail, Phone, MapPin, Linkedin,
+  Monitor, ShoppingBag, TrendingUp, BadgeCheck, GraduationCap, Sun, Moon,
+} from 'lucide-react';
+
+const EMAIL = 'aoundanish6@gmail.com';
+const PHONE = '03350204955';
+const LINKEDIN = 'https://www.linkedin.com/in/aoun-danish-87a12a449/';
+const CV = 'https://www.dropbox.com/scl/fi/ibjn9uyyp5cm72abonlsd/Aoun-1.pdf?rlkey=nj2ww6p0qly1kzxw1v67wgxl0&st=t22mkl4p&dl=1';
+
+const nav = [
+  { id: 'work', label: 'Work' },
+  { id: 'services', label: 'Services' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+];
+
+const featured = {
+  name: 'True Rest',
+  type: 'Shopify store · UK',
+  url: 'https://truerest.co.uk',
+  image: '/work/truerest.jpg',
+  summary: 'Online store for a UK mattress brand, built to turn visitors into buyers.',
+  tags: ['Shopify', 'E-commerce', 'Klarna checkout'],
+};
+
+const work = [
+  { name: 'ExtreemTek', type: 'Company website · in progress', url: 'https://extreemtek.com', image: '/work/extreemtek.jpg' },
+  { name: 'Solar Dream', type: 'WordPress · UK solar company', url: 'https://solardream.co.uk', image: '/work/solardream.jpg' },
+  { name: 'Ray Executive Cars', type: 'WordPress + social design', url: 'https://www.rayexecutivecars.co.uk', image: '/work/ray.jpg' },
+  { name: 'Fall Family Furniture', type: 'WordPress e-commerce', url: 'https://fallfamilyfurniture.ca/', image: '' },
+];
+
+const moreWork = [
+  { name: 'British Clinic' },
+  { name: 'Lofty Estimation' },
+  { name: 'Fluffy Kids', url: 'https://drive.google.com/file/d/1XJsG4tU8BzEjr61ke9S3WnxbuSI-dXuO/view?usp=drive_link' },
+  { name: 'All Star Meat Shop', url: 'https://drive.google.com/file/d/19efdx4ys9przEJ2FHLPHxcLxUldov89P/view?usp=drive_link' },
+  { name: 'Mina Bay Sea Food' },
+];
+
+const designWork = [
+  { name: 'Game Hero', url: 'https://drive.google.com/drive/folders/1I_-F9VpkMCZZBmaIqcQUWSB0prTLuwNa?usp=drive_link' },
+  { name: 'Project Starter', url: 'https://drive.google.com/drive/folders/1vtU5VQ-L8rI062FB5BlE07LeYJK4EzrW' },
+  { name: 'Smile Studio Boston', url: 'https://drive.google.com/drive/folders/17rL5YeyrD9g97upwsqVQLR7rqylyx31J' },
+  { name: 'Neotecniq' },
+  { name: 'Mik Plumbing' },
+];
+
+const services = [
+  { icon: Monitor, title: 'Websites', text: 'WordPress and hand-coded sites that get people to call, book or buy.' },
+  { icon: ShoppingBag, title: 'Online stores', text: 'Shopify stores with clear product pages and an easy checkout.' },
+  { icon: TrendingUp, title: 'Marketing', text: 'Meta ads, lead forms and SEO that bring the right visitors.' },
+];
+
+const experience = [
+  { role: 'Digital Marketer', org: 'ExtreemTek', when: '2026 – Now' },
+  { role: 'Digital Marketer', org: 'Chimp Studio', when: '2025 – 2026' },
+  { role: 'Web Developer', org: 'Freelance', when: '2023 – Now' },
+  { role: 'WordPress Intern', org: 'Tech Hub Pakistan', when: '2022' },
+  { role: 'Graphic Designer Intern', org: 'Multidex Technologies', when: '2022' },
+];
+
+const education = [
+  { title: 'Post-ADP, Business Management & Accountancy', when: 'UMT · 2023 – 2025' },
+  { title: 'Associate Degree, Computer Science', when: 'UMT · 2020 – 2022' },
+];
+
+const skills = ['WordPress', 'Shopify', 'HTML5', 'CSS3', 'JavaScript', 'Meta Ads', 'Lead Generation', 'SEO', 'Social Media', 'Figma', 'Canva', 'Power BI'];
+
+const certs = [
+  { name: 'Web Design for Beginners: HTML & CSS', url: 'https://ude.my/UC-7b636a14-b0ad-47c6-9e1c-b6f2609a32da' },
+  { name: 'WordPress Web Design & Freelancing MasterClass', url: 'https://ude.my/UC-96d73063-d0a0-4919-af72-8b3e706e09c3' },
+  { name: 'WordPress (No Coding) in 3.5 Hours', url: 'https://ude.my/UC-3603e572-5aed-4b99-b4b8-a7411181812f' },
+  { name: 'Figma to WordPress Website', url: '' },
+];
+
+const stats = [
+  { value: '9', label: 'websites built' },
+  { value: '6', label: 'brands designed for' },
+  { value: '2023', label: 'freelancing since' },
+  { value: '4', label: 'certifications' },
+];
+
+function useReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('is-visible')),
+      { threshold: 0.1 },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="reveal mb-8 md:mb-12">
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 className="font-display text-[1.75rem] md:text-[2.5rem] font-extrabold leading-tight text-fg mt-2">{title}</h2>
+    </div>
+  );
+}
+
+function Browser({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
+  return (
+    <div className={`rounded-xl overflow-hidden bg-surface border border-line/10 shadow-2xl ${className}`}>
+      <div className="flex items-center gap-1.5 px-3 h-6 md:h-7 frame-bar border-b border-line/10">
+        <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#ff5f57]/80" />
+        <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#febc2e]/80" />
+        <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[#28c840]/80" />
+      </div>
+      <img src={src} alt={alt} loading="lazy" className="w-full aspect-[1134/600] object-cover object-top" />
+    </div>
+  );
+}
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
+  useReveal();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+  const toggleTheme = () => {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle('dark', next);
+    try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch { /* storage unavailable */ }
   };
 
-  const projects = {
-    shopify: [
-      {
-        name: "True Rest",
-        description: "Shopify store for a UK memory foam mattress brand: product pages, brand story, reviews, blog and Klarna checkout",
-        link: "https://truerest.co.uk"
-      }
-    ],
-    socialMedia: [
-      {
-        name: "Game Hero",
-        description: "Gaming accessories brand social media designs",
-        link: "https://drive.google.com/drive/folders/1I_-F9VpkMCZZBmaIqcQUWSB0prTLuwNa?usp=drive_link&pli=1"
-      },
-      {
-        name: "Project Starter",
-        description: "Crypto business social media content",
-        link: "https://drive.google.com/drive/folders/1vtU5VQ-L8rI062FB5BlE07LeYJK4EzrW"
-      },
-      {
-        name: "Smile Studio Boston",
-        description: "Dental clinic social media designs",
-        link: "https://drive.google.com/drive/folders/17rL5YeyrD9g97upwsqVQLR7rqylyx31J"
-      }
-    ],
-    wordpress: [
-      {
-        name: "ExtreemTek",
-        description: "Company website for a software development company in Eindhoven (in progress)",
-        link: "https://extreemtek.com"
-      },
-      {
-        name: "Solar Dream",
-        description: "Website for a UK solar energy business",
-        link: "https://solardream.co.uk"
-      },
-      {
-        name: "Ray Executive Cars",
-        description: "Website and social media designs for a UK executive car service",
-        link: "https://www.rayexecutivecars.co.uk"
-      },
-      {
-        name: "Fall Family Furniture",
-        description: "E-commerce furniture website",
-        link: "https://fallfamilyfurniture.ca/"
-      },
-      {
-        name: "British Clinic",
-        description: "Medical clinic website",
-        link: "#"
-      },
-      {
-        name: "Lofty Estimation",
-        description: "Business estimation service website",
-        link: "#"
-      }
-    ],
-    htmlCss: [
-      {
-        name: "Fluffy Kids",
-        description: "Kids clothing store website",
-        link: "https://drive.google.com/file/d/1XJsG4tU8BzEjr61ke9S3WnxbuSI-dXuO/view?usp=drive_link"
-      },
-      {
-        name: "Mina Bay Sea Food",
-        description: "Restaurant website design",
-        link: "#"
-      },
-      {
-        name: "All Star Meat Shop",
-        description: "Butcher shop website",
-        link: "https://drive.google.com/file/d/19efdx4ys9przEJ2FHLPHxcLxUldov89P/view?usp=drive_link"
-      }
-    ]
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const go = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4 animate-fade-in">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer">
-              Aoun Danish
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8">
-              <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </button>
-              <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
-                About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </button>
-              <button onClick={() => scrollToSection('projects')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
-                Projects
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </button>
-              <button onClick={() => scrollToSection('skills')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 font-medium relative group">
-                Skills
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110">
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t animate-slide-down">
-              <div className="flex flex-col space-y-4">
-                <button onClick={() => scrollToSection('home')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">Home</button>
-                <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">About</button>
-                <button onClick={() => scrollToSection('projects')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">Projects</button>
-                <button onClick={() => scrollToSection('skills')} className="text-gray-700 hover:text-blue-600 transition-all duration-300 text-left hover:translate-x-2 font-medium">Skills</button>
-              </div>
-            </div>
-          )}
-        </div>
-      </nav>
-
-      {/* Home Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-        
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in-up">
-            Aoun <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-gradient">Danish</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 animate-fade-in-up delay-200">
-            Web Developer &amp; Digital Marketer
-          </p>
-          <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-300">
-            I build WordPress and Shopify websites and run the marketing that brings customers to them: Meta ads, lead generation and SEO.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-500">
-            <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
-              <MapPin size={16} />
-              <span className="text-sm group-hover:scale-105 transition-transform duration-300">Jhelum, Pakistan</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
-              <Phone size={16} />
-              <span className="text-sm group-hover:scale-105 transition-transform duration-300">03350204955</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
-              <Mail size={16} />
-              <span className="text-sm group-hover:scale-105 transition-transform duration-300">aoundanish6@gmail.com</span>
-            </div>
-            <a href="https://www.linkedin.com/in/aoun-danish-87a12a449/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group">
-              <ExternalLink size={16} />
-              <span className="text-sm group-hover:scale-105 transition-transform duration-300">LinkedIn</span>
-            </a>
-          </div>
-          
-          {/* Scroll Down Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <ChevronDown className="w-6 h-6 text-gray-400" />
+    <div className="min-h-screen bg-bg text-fg2 font-body antialiased selection:bg-accent/30">
+      {/* Nav */}
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || open ? 'bg-bg/85 backdrop-blur-lg border-b border-line/10' : ''}`}>
+        <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+          <button onClick={() => go('home')} className="flex items-center gap-2.5" aria-label="Back to top">
+            <span className="w-9 h-9 rounded-lg bg-accent/15 border border-accent/30 grid place-items-center font-display font-extrabold text-accent text-sm">AD</span>
+            <span className="font-display font-bold text-fg tracking-tight">Aoun Danish</span>
+          </button>
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            {nav.map((n) => (
+              <button key={n.id} onClick={() => go(n.id)} className="text-muted hover:text-accent transition">{n.label}</button>
+            ))}
+            <button onClick={toggleTheme} aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'} className="w-10 h-10 rounded-full border border-line/15 bg-surface/70 grid place-items-center text-fg hover:text-accent hover:border-accent transition">
+              {dark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <a href={`mailto:${EMAIL}`} className="btn-primary !py-2 !px-4 text-sm">Hire me</a>
+          </nav>
+          <div className="md:hidden flex items-center gap-2">
+            <button onClick={toggleTheme} aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'} className="w-10 h-10 rounded-full border border-line/15 bg-surface/70 grid place-items-center text-fg hover:text-accent hover:border-accent transition">
+              {dark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button className="w-10 h-10 grid place-items-center text-fg" onClick={() => setOpen(!open)} aria-label="Menu">
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-white relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-blue-50/30"></div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16 animate-fade-in-up relative">
-            About Me
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-12 relative z-10">
-            <div className="animate-fade-in-left">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 relative">
-                Career Objective
-                <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-8 hover:text-gray-700 transition-colors duration-300">
-                I help businesses get more leads and sales online, from the ad to the website it lands on. I'm a Digital Marketer at ExtreemTek, where I run Meta lead-generation campaigns, handle website content and SEO, and am building the company website. Since 2023 I've also built WordPress and Shopify sites for clients including True Rest, Solar Dream, Fall Family Furniture and Ray Executive Cars. Because I do both, the campaign and the landing page come from the same person.
-              </p>
-              
-              <div className="mb-8 group">
-                <a 
-                  href="https://www.dropbox.com/scl/fi/ibjn9uyyp5cm72abonlsd/Aoun-1.pdf?rlkey=nj2ww6p0qly1kzxw1v67wgxl0&st=t22mkl4p&dl=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden group"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <Download size={20} />
-                  <span className="relative z-10">Download Resume</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="animate-fade-in-right">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6 relative">
-                Education
-                <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-              </h3>
-              <div className="space-y-6">
-                <div className="border-l-4 border-blue-500 pl-4 hover:border-blue-600 transition-colors duration-300 hover:translate-x-2 transform transition-transform">
-                  <h4 className="font-semibold text-gray-900">PostAdp Business Management & Accountancy</h4>
-                  <p className="text-gray-600">University of Management and Technology</p>
-                  <p className="text-sm text-gray-500">2023 - 2025 • GPA: 3.2/4</p>
-                </div>
-                <div className="border-l-4 border-purple-500 pl-4 hover:border-purple-600 transition-colors duration-300 hover:translate-x-2 transform transition-transform">
-                  <h4 className="font-semibold text-gray-900">ADP Computer Science</h4>
-                  <p className="text-gray-600">University of Management and Technology</p>
-                  <p className="text-sm text-gray-500">2020 - 2022 • GPA: 3.14/4</p>
-                </div>
-              </div>
-            </div>
+        {open && (
+          <div className="md:hidden px-5 pb-6 pt-2 flex flex-col gap-1">
+            {nav.map((n) => (
+              <button key={n.id} onClick={() => go(n.id)} className="text-left text-lg text-fg py-3 border-b border-line/10">{n.label}</button>
+            ))}
+            <a href={`mailto:${EMAIL}`} className="btn-primary justify-center mt-4">Hire me</a>
           </div>
+        )}
+      </header>
 
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              Work Experience
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-indigo-500 animate-fade-in-up">
-                <h4 className="font-semibold text-gray-900 mb-2">Digital Marketer</h4>
-                <p className="text-blue-600 font-medium mb-2">ExtreemTek</p>
-                <p className="text-sm text-gray-500">June 2026 - Present</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-pink-500 animate-fade-in-up">
-                <h4 className="font-semibold text-gray-900 mb-2">Digital Marketer</h4>
-                <p className="text-blue-600 font-medium mb-2">Chimp Studio</p>
-                <p className="text-sm text-gray-500">Sep 2025 - June 2026</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500 animate-fade-in-up delay-100">
-                <h4 className="font-semibold text-gray-900 mb-2">Web Developer</h4>
-                <p className="text-blue-600 font-medium mb-2">Freelancer</p>
-                <p className="text-sm text-gray-500">2023 - onwards</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-green-500 animate-fade-in-up delay-200">
-                <h4 className="font-semibold text-gray-900 mb-2">WordPress Internship</h4>
-                <p className="text-blue-600 font-medium mb-2">Tech Hub Pakistan</p>
-                <p className="text-sm text-gray-500">May 2022 - June 2022</p>
-              </div>
-              <div className="bg-gray-50 p-6 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-purple-500 animate-fade-in-up delay-300">
-                <h4 className="font-semibold text-gray-900 mb-2">Graphic Designer Intern</h4>
-                <p className="text-blue-600 font-medium mb-2">Multidex Technologies</p>
-                <p className="text-sm text-gray-500">March 2022 - April 2022</p>
-              </div>
-            </div>
-          </div>
+      {/* Hero */}
+      <section id="home" className="relative min-h-[100svh] flex items-center pt-24 pb-24 md:pb-28 overflow-hidden">
+        <div className="absolute inset-0 grid-bg pointer-events-none" />
+        <div className="absolute -top-40 right-[-20%] w-[520px] md:w-[640px] h-[520px] md:h-[640px] rounded-full bg-accent/20 blur-[140px] pointer-events-none" />
+        <div className="absolute top-[30%] left-[35%] w-[360px] h-[360px] rounded-full bg-mint/60 dark:bg-transparent blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-20%] left-[-20%] w-[420px] h-[420px] rounded-full bg-pink/70 dark:bg-warm/10 blur-[140px] pointer-events-none" />
 
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              Certifications
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="flex items-center gap-3 p-4 border rounded-xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-100">
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                <div>
-                  <h4 className="font-medium text-gray-900">Figma to WordPress Website</h4>
-                  <p className="text-sm text-gray-500">Udemy • 2025</p>
-                </div>
-              </div>
-              <a href="https://ude.my/UC-7b636a14-b0ad-47c6-9e1c-b6f2609a32da" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-purple-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-200">
-                <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                <div>
-                  <h4 className="font-medium text-gray-900">Web Design for Beginners: HTML & CSS</h4>
-                  <p className="text-sm text-gray-500">Udemy • May 2025 • Verify ↗</p>
-                </div>
-              </a>
-              <a href="https://ude.my/UC-96d73063-d0a0-4919-af72-8b3e706e09c3" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-green-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-300">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <div>
-                  <h4 className="font-medium text-gray-900">WordPress Web Design & Freelancing Masterclass</h4>
-                  <p className="text-sm text-gray-500">Udemy • May 2025 • Verify ↗</p>
-                </div>
-              </a>
-              <a href="https://ude.my/UC-3603e572-5aed-4b99-b4b8-a7411181812f" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-orange-300 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-300">
-                <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
-                <div>
-                  <h4 className="font-medium text-gray-900">WordPress (No Coding): Build a Site in 3.5 Hours</h4>
-                  <p className="text-sm text-gray-500">Udemy • May 2025 • Verify ↗</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">Skills</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-pink-500 hover:border-pink-600">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-pink-600 transition-colors duration-300">Digital Marketing</h3>
-              </div>
-              <div className="space-y-3">
-                {["Meta (Facebook & Instagram) Ads", "Lead Generation", "SEO", "Social Media Marketing"].map((s) => (
-                  <div key={s} className="flex items-center p-2 rounded-lg hover:bg-pink-50 transition-colors duration-200">
-                    <div className="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></div>
-                    <span className="text-gray-700 font-medium">{s}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-blue-500 hover:border-blue-600">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Design & UI/UX</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center p-2 rounded-lg hover:bg-blue-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Figma</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-purple-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Canva</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-green-500 hover:border-green-600">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors duration-300">Web & Digital Tools</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center p-2 rounded-lg hover:bg-green-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">WordPress</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-teal-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-teal-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Shopify</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-orange-500 hover:border-orange-600">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors duration-300">Front-End Basics</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center p-2 rounded-lg hover:bg-orange-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">HTML5</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-red-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">CSS3</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-yellow-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">JavaScript</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-l-4 border-indigo-500 hover:border-indigo-600">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">Other Skills</h3>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center p-2 rounded-lg hover:bg-indigo-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Documentation</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-indigo-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Power BI</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-purple-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Good Communication</span>
-                </div>
-                <div className="flex items-center p-2 rounded-lg hover:bg-pink-50 transition-colors duration-200">
-                  <div className="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-gray-700 font-medium">Attention to Detail</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-64 h-64 bg-gradient-to-br from-purple-100/50 to-pink-100/50 rounded-full blur-3xl"></div>
-        
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-16 animate-fade-in-up relative">
-            Projects
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-          </h2>
-          
-          {/* Shopify Projects */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              Shopify Projects
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-emerald-600 to-lime-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {projects.shopify.map((project, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-emerald-500 hover:border-emerald-600 animate-fade-in-up group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
-                  >
-                    Visit Store <ExternalLink size={16} />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Social Media Design Projects */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              Social Media Design Projects
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {projects.socialMedia.map((project, index) => (
-                <div key={index} className={`bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-blue-500 hover:border-blue-600 animate-fade-in-up group relative overflow-hidden`} style={{animationDelay: `${index * 100}ms`}}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
-                  >
-                    View Project <ExternalLink size={16} />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* WordPress Projects */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              WordPress Projects
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-green-600 to-teal-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {projects.wordpress.map((project, index) => (
-                <div key={index} className={`bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-green-500 hover:border-green-600 animate-fade-in-up group relative overflow-hidden`} style={{animationDelay: `${index * 100}ms`}}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  {project.link !== "#" ? (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
-                    >
-                      View Project <ExternalLink size={16} />
-                    </a>
-                  ) : (
-                    <span className="text-gray-400">Client project</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* HTML & CSS Projects */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              HTML & CSS Projects
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-orange-600 to-red-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {projects.htmlCss.map((project, index) => (
-                <div key={index} className={`bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-orange-500 hover:border-orange-600 animate-fade-in-up group relative overflow-hidden`} style={{animationDelay: `${index * 100}ms`}}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{project.name}</h4>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  {project.link !== "#" ? (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium hover:scale-105 transition-all duration-300 relative z-10"
-                    >
-                      View Project <ExternalLink size={16} />
-                    </a>
-                  ) : (
-                    <span className="text-gray-400">Client project</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Research Projects */}
+        <div className="relative max-w-6xl mx-auto px-5 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center w-full">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 animate-fade-in-up relative">
-              Research & Academic Projects
-              <div className="absolute -bottom-2 left-0 w-16 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600"></div>
-            </h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-indigo-500 hover:border-indigo-600 animate-fade-in-up group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Impact of Technology Adoption on Operational Efficiency</h4>
-                <p className="text-gray-600 mb-2">Research project on business growth through technology</p>
-                <span className="text-sm text-indigo-600 font-medium bg-indigo-100 px-3 py-1 rounded-full">Research Project</span>
+            <div className="hero-in inline-flex items-center gap-2 rounded-full border border-line/10 bg-surface px-3 py-1.5 text-xs text-fg2">
+              <span className="relative flex w-2 h-2"><span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-60" /><span className="relative w-2 h-2 rounded-full bg-emerald-400" /></span>
+              Available for work
+            </div>
+            <h1 className="hero-in font-display font-extrabold text-fg text-[2.4rem] leading-[1.08] sm:text-6xl tracking-tight mt-6" style={{ animationDelay: '100ms' }}>
+              Websites that <span className="text-accent">bring in sales.</span>
+            </h1>
+            <p className="hero-in text-base sm:text-lg text-muted leading-relaxed mt-5 max-w-md" style={{ animationDelay: '160ms' }}>
+              Web developer &amp; digital marketer. I build WordPress and Shopify sites, then bring customers to them.
+            </p>
+            <div className="hero-in flex flex-col sm:flex-row gap-3 mt-8" style={{ animationDelay: '220ms' }}>
+              <button onClick={() => go('work')} className="btn-primary justify-center">See my work <ArrowRight size={18} /></button>
+              <a href={CV} target="_blank" rel="noopener noreferrer" className="btn-ghost justify-center"><Download size={18} /> Download CV</a>
+            </div>
+            <p className="hero-in inline-flex items-center gap-2 mt-7 text-sm text-muted" style={{ animationDelay: '280ms' }}>
+              <MapPin size={15} /> Jhelum, Pakistan · Remote
+            </p>
+          </div>
+
+          {/* Visual: desktop collage */}
+          <div className="relative hidden lg:block h-[480px] hero-in" style={{ animationDelay: '200ms' }}>
+            <Browser src="/work/extreemtek.jpg" alt="ExtreemTek website" className="absolute top-0 right-0 w-[78%] opacity-60 rotate-[3deg]" />
+            <Browser src="/work/truerest.jpg" alt="True Rest Shopify store" className="absolute top-20 left-0 w-[86%] float-slow" />
+            <span className="chip-float top-6 left-4 bg-[#95BF47] text-[#0b1a00]">Shopify</span>
+            <span className="chip-float bottom-24 right-2 bg-[#21759B] text-white" style={{ animationDelay: '1.2s' }}>WordPress</span>
+            <span className="chip-float bottom-6 left-16 bg-surface text-fg border border-line/10" style={{ animationDelay: '2.4s' }}>Meta Ads · SEO</span>
+          </div>
+          {/* Visual: mobile / tablet */}
+          <div className="relative lg:hidden hero-in" style={{ animationDelay: '260ms' }}>
+            <Browser src="/work/truerest.jpg" alt="True Rest Shopify store" />
+            <span className="absolute -top-3 right-3 text-[11px] font-bold px-3 py-1.5 rounded-full bg-[#95BF47] text-[#0b1a00] shadow-lg">Shopify</span>
+          </div>
+        </div>
+
+        <button onClick={() => go('work')} aria-label="Scroll to work" className="hidden md:grid absolute bottom-8 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border border-line/15 place-items-center text-muted hover:text-accent hover:border-accent transition animate-bounce">
+          <ArrowDown size={18} />
+        </button>
+      </section>
+
+      {/* Stats */}
+      <section className="border-y border-line/10 bg-surface2/50">
+        <div className="max-w-6xl mx-auto px-5 grid grid-cols-2 md:grid-cols-4">
+          {stats.map((s, i) => (
+            <div key={s.label} className={`reveal py-6 md:py-8 ${i % 2 ? 'pl-5 border-l border-line/10' : ''} ${i > 1 ? 'border-t md:border-t-0 border-line/10' : ''} ${i === 2 ? 'md:pl-5 md:border-l' : ''}`}>
+              <p className="font-display text-3xl md:text-4xl font-extrabold text-fg">{s.value}</p>
+              <p className="text-xs md:text-sm text-muted mt-1">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Work */}
+      <section id="work" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-5">
+          <SectionHead eyebrow="Selected work" title="Live sites I’ve built" />
+
+          <a href={featured.url} target="_blank" rel="noopener noreferrer" className="reveal card group grid lg:grid-cols-[1.3fr_1fr] overflow-hidden">
+            <div className="p-3 md:p-6 bg-gradient-to-br from-accent/10 to-transparent">
+              <Browser src={featured.image} alt={`${featured.name} website`} className="group-hover:-translate-y-1 transition duration-500" />
+            </div>
+            <div className="p-6 md:p-9 flex flex-col justify-center">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-warm font-semibold">Featured · {featured.type}</p>
+              <h3 className="font-display text-2xl md:text-3xl font-extrabold text-fg mt-2">{featured.name}</h3>
+              <p className="text-muted mt-2 leading-relaxed">{featured.summary}</p>
+              <div className="flex flex-wrap gap-2 mt-5">{featured.tags.map((t) => <span key={t} className="tag">{t}</span>)}</div>
+              <span className="btn-primary self-start mt-7">Visit store <ArrowUpRight size={18} /></span>
+            </div>
+          </a>
+
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+            {work.map((w) => (
+              <a key={w.name} href={w.url} target="_blank" rel="noopener noreferrer" className="reveal card group overflow-hidden">
+                <div className="p-3 pb-0">
+                  {w.image ? (
+                    <Browser src={w.image} alt={`${w.name} website`} className="group-hover:-translate-y-1 transition duration-500" />
+                  ) : (
+                    <div className="rounded-xl aspect-[1134/600] border border-line/10 bg-gradient-to-br from-pink/70 via-surface2 to-mint/70 grid place-items-center group-hover:-translate-y-1 transition duration-500">
+                      <span className="font-display text-xl md:text-2xl font-extrabold text-fg">{w.name}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-5 flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <h3 className="font-display text-lg font-bold text-fg truncate">{w.name}</h3>
+                    <p className="text-sm text-muted truncate">{w.type}</p>
+                  </div>
+                  <span className="w-9 h-9 shrink-0 rounded-full border border-line/10 grid place-items-center text-muted group-hover:bg-accent group-hover:text-onaccent group-hover:border-accent transition"><ArrowUpRight size={17} /></span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="reveal card p-5 md:p-7 mt-4 md:mt-6 grid md:grid-cols-2 gap-6">
+            {[{ label: 'More websites', items: moreWork }, { label: 'Social media design', items: designWork }].map((g) => (
+              <div key={g.label}>
+                <p className="eyebrow">{g.label}</p>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {g.items.map((it: { name: string; url?: string }) =>
+                    it.url ? (
+                      <a key={it.name} href={it.url} target="_blank" rel="noopener noreferrer" className="tag !text-sm !py-1.5 !px-3 inline-flex items-center gap-1 hover:border-accent hover:text-accent transition">{it.name} <ArrowUpRight size={13} /></a>
+                    ) : (
+                      <span key={it.name} className="tag !text-sm !py-1.5 !px-3 text-muted">{it.name}</span>
+                    ),
+                  )}
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-purple-500 hover:border-purple-600 animate-fade-in-up delay-100 group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Financial Statement Analysis</h4>
-                <p className="text-gray-600 mb-2">Ratio calculation of Ferozsons Pharma and Mectar Pharma</p>
-                <span className="text-sm text-purple-600 font-medium bg-purple-100 px-3 py-1 rounded-full">Class Project</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="py-20 md:py-28 bg-surface2/50 border-y border-line/10">
+        <div className="max-w-6xl mx-auto px-5">
+          <SectionHead eyebrow="What I do" title="The site and the marketing" />
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+            {services.map((s) => (
+              <div key={s.title} className="reveal card p-6 md:p-7 flex md:block gap-4">
+                <span className="w-11 h-11 shrink-0 rounded-xl bg-accent/15 border border-accent/25 grid place-items-center text-accent"><s.icon size={20} /></span>
+                <div>
+                  <h3 className="font-display text-lg md:text-xl font-bold text-fg md:mt-5">{s.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed mt-1.5">{s.text}</p>
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-6 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border-l-4 border-pink-500 hover:border-pink-600 animate-fade-in-up delay-200 group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Finchartsphare Business Plan</h4>
-                <p className="text-gray-600 mb-2">AI powered financial tracker all-in-one solution</p>
-                <span className="text-sm text-pink-600 font-medium bg-pink-100 px-3 py-1 rounded-full">Class Project</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience + Education + Skills */}
+      <section id="experience" className="py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-14">
+          <div>
+            <SectionHead eyebrow="Experience" title="Where I’ve worked" />
+            <ul className="reveal card divide-y divide-line/10">
+              {experience.map((e, i) => (
+                <li key={e.role + e.org} className="px-5 py-4 flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-fg font-semibold flex items-center gap-2">
+                      {i === 0 && <span className="w-2 h-2 rounded-full bg-accent shrink-0" />}
+                      <span className="truncate">{e.role}</span>
+                    </p>
+                    <p className="text-sm text-muted truncate">{e.org}</p>
+                  </div>
+                  <p className="text-xs text-muted shrink-0">{e.when}</p>
+                </li>
+              ))}
+            </ul>
+            <ul className="reveal mt-4 space-y-3">
+              {education.map((ed) => (
+                <li key={ed.title} className="flex gap-3 items-start">
+                  <GraduationCap size={18} className="text-muted mt-0.5 shrink-0" />
+                  <div>
+                    <p className="text-sm text-fg">{ed.title}</p>
+                    <p className="text-xs text-muted">{ed.when}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div id="skills">
+            <SectionHead eyebrow="Skills" title="Tools I use" />
+            <div className="reveal flex flex-wrap gap-2">
+              {skills.map((s) => <span key={s} className="tag !text-sm !px-3.5 !py-1.5">{s}</span>)}
+            </div>
+            <p className="eyebrow mt-10">Udemy certificates</p>
+            <ul className="reveal mt-3 space-y-2">
+              {certs.map((c) => (
+                <li key={c.name}>
+                  {c.url ? (
+                    <a href={c.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 py-2 text-sm text-fg2 hover:text-accent transition">
+                      <BadgeCheck size={18} className="text-accent shrink-0" />
+                      <span className="flex-1">{c.name}</span>
+                      <ArrowUpRight size={15} className="text-muted shrink-0" />
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-3 py-2 text-sm text-fg2">
+                      <BadgeCheck size={18} className="text-accent shrink-0" />
+                      <span className="flex-1">{c.name}</span>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="pb-20 md:pb-28">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="reveal relative overflow-hidden rounded-3xl border border-line/10 bg-gradient-to-br from-surface2 via-surface to-pink/40 p-7 sm:p-10 md:p-16">
+            <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-accent/25 blur-[100px]" />
+            <div className="relative">
+              <p className="eyebrow">Contact</p>
+              <h2 className="font-display text-[1.9rem] md:text-5xl font-extrabold text-fg leading-tight mt-2 max-w-xl">Let’s build something that sells.</h2>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-8">
+                <a href={`mailto:${EMAIL}`} className="btn-primary justify-center"><Mail size={18} /> Email me</a>
+                <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="btn-ghost justify-center"><Linkedin size={18} /> LinkedIn</a>
+                <a href={`tel:+92${PHONE.slice(1)}`} className="btn-ghost justify-center"><Phone size={18} /> Call</a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20"></div>
-        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-          <div className="mb-6">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">Aoun Danish</h3>
-            <p className="text-gray-300">Web Developer & Digital Marketer</p>
-          </div>
-          <div className="border-t border-gray-700 pt-6">
-            <p className="text-gray-400 hover:text-white transition-colors duration-300">© 2026 Aoun Danish. All rights reserved.</p>
-          </div>
+      <footer className="border-t border-line/10">
+        <div className="max-w-6xl mx-auto px-5 py-7 flex items-center justify-between text-xs sm:text-sm text-muted">
+          <p>© 2026 Aoun Danish</p>
+          <button onClick={() => go('home')} className="hover:text-accent transition">Back to top ↑</button>
         </div>
       </footer>
     </div>
