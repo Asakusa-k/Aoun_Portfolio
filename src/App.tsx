@@ -29,10 +29,10 @@ const work = [
   { name: 'ExtreemTek', type: 'Company website · in progress', url: 'https://extreemtek.com', image: '/work/extreemtek.jpg' },
   { name: 'Solar Dream', type: 'WordPress · UK solar company', url: 'https://solardream.co.uk', image: '/work/solardream.jpg' },
   { name: 'Ray Executive Cars', type: 'WordPress + social design', url: 'https://www.rayexecutivecars.co.uk', image: '/work/ray.jpg' },
-  { name: 'Fall Family Furniture', type: 'WordPress e-commerce', url: 'https://fallfamilyfurniture.ca/', image: '' },
 ];
 
 const moreWork = [
+  { name: 'Fall Family Furniture' },
   { name: 'British Clinic' },
   { name: 'Lofty Estimation' },
   { name: 'Fluffy Kids', url: 'https://drive.google.com/file/d/1XJsG4tU8BzEjr61ke9S3WnxbuSI-dXuO/view?usp=drive_link' },
@@ -257,7 +257,7 @@ function App() {
             </div>
           </a>
 
-          <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-4 md:mt-6">
             {work.map((w) => (
               <a key={w.name} href={w.url} target="_blank" rel="noopener noreferrer" className="reveal card group overflow-hidden">
                 <div className="p-3 pb-0">
