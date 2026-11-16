@@ -18,7 +18,7 @@ const nav = [
 
 const featured = {
   name: 'True Rest',
-  type: 'Shopify store · UK',
+  type: 'Shopify store · via Digital Next',
   url: 'https://truerest.co.uk',
   image: '/work/truerest.jpg',
   summary: 'Online store for a UK mattress brand, built to turn visitors into buyers.',
@@ -26,9 +26,10 @@ const featured = {
 };
 
 const work = [
-  { name: 'ExtreemTek', type: 'Company website · in progress', url: 'https://extreemtek.com', image: '/work/extreemtek.jpg' },
-  { name: 'Solar Dream', type: 'WordPress · UK solar company', url: 'https://solardream.co.uk', image: '/work/solardream.jpg' },
-  { name: 'Ray Executive Cars', type: 'WordPress + social design', url: 'https://www.rayexecutivecars.co.uk', image: '/work/ray.jpg' },
+  { name: 'ExtreemTek', type: 'Company website · at ExtreemTek', url: 'https://extreemtek.com', image: '/work/extreemtek.jpg' },
+  { name: 'Solar Dream', type: 'WordPress · at Chimp Studio', url: 'https://solardream.co.uk', image: '/work/solardream.jpg' },
+  { name: 'Ray Executive Cars', type: 'WordPress + social · at Chimp Studio', url: 'https://www.rayexecutivecars.co.uk', image: '/work/ray.jpg' },
+  { name: 'MIK Plumbing', type: 'WordPress + social · at Chimp Studio', url: 'https://mikplumbing.com/', image: '/work/mikplumbing.jpg' },
 ];
 
 const moreWork = [
@@ -45,11 +46,10 @@ const designWork = [
   { name: 'Project Starter', url: 'https://drive.google.com/drive/folders/1vtU5VQ-L8rI062FB5BlE07LeYJK4EzrW' },
   { name: 'Smile Studio Boston', url: 'https://drive.google.com/drive/folders/17rL5YeyrD9g97upwsqVQLR7rqylyx31J' },
   { name: 'Neotecniq' },
-  { name: 'Mik Plumbing' },
 ];
 
 const services = [
-  { icon: Monitor, title: 'Websites', text: 'WordPress and hand-coded sites that get people to call, book or buy.' },
+  { icon: Monitor, title: 'Custom websites', text: 'Hand-coded and WordPress sites that get people to call, book or buy.' },
   { icon: ShoppingBag, title: 'Online stores', text: 'Shopify stores with clear product pages and an easy checkout.' },
   { icon: TrendingUp, title: 'Marketing', text: 'Meta ads, lead forms and SEO that bring the right visitors.' },
 ];
@@ -196,7 +196,7 @@ function App() {
               Websites that <span className="text-accent">bring in sales.</span>
             </h1>
             <p className="hero-in text-base sm:text-lg text-muted leading-relaxed mt-5 max-w-md" style={{ animationDelay: '160ms' }}>
-              Web developer &amp; digital marketer. I build WordPress and Shopify sites, then bring customers to them.
+              Web developer &amp; digital marketer. I build custom, WordPress and Shopify websites, then bring customers to them.
             </p>
             <div className="hero-in flex flex-col sm:flex-row gap-3 mt-8" style={{ animationDelay: '220ms' }}>
               <button onClick={() => go('work')} className="btn-primary justify-center">See my work <ArrowRight size={18} /></button>
@@ -257,7 +257,7 @@ function App() {
             </div>
           </a>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-4 md:mt-6">
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6">
             {work.map((w) => (
               <a key={w.name} href={w.url} target="_blank" rel="noopener noreferrer" className="reveal card group overflow-hidden">
                 <div className="p-3 pb-0">
